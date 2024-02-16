@@ -9,10 +9,17 @@ export async function POST(req, { params }) {
         const db = await pool.getConnection();
         const c_id = await db.query(`select c_id from access_token where session_id = '${params.session_id}'`);
         if(c_id.length!=0){
-            const result = await db.query('INSERT INTO products (p_id, p_name, p_desc, p_image, avail_stock,c_id) VALUES (?, ?, ?, ?, ?,?)', [v4(), p_name, p_desc, p_image, avail_stock,c_id[0].c_id]);
-            db.end();
-            console.log('Product added:', result);
-            return new NextResponse("Product added successfully", { status: 200 });
+            const multiple_obj = await db.query(`select p_id from products where p_name = '${p_name}'`);
+            if(multiple_obj.length!=0){
+                db.end();
+                throw("Multiple object creation error");
+            }
+            else{
+                const result = await db.query('INSERT INTO products (p_id, p_name, p_desc, p_image, avail_stock,c_id) VALUES (?, ?, ?, ?, ?,?)', [v4(), p_name, p_desc, p_image, avail_stock,c_id[0].c_id]);
+                db.end();
+                console.log('Product added:', result);
+                return new NextResponse("Product added successfully", { status: 200 });
+            }
         }
         else{
             throw("Invalid session ID")
@@ -20,6 +27,6 @@ export async function POST(req, { params }) {
     } 
     catch (error) {
         console.error('Error adding product:', error);
-        return new NextResponse("Error adding product", { status: 400 });
+        return new NextResponse(`Error updating product:${error}`, { status: 400 });
     }
 };
