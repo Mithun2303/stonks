@@ -18,13 +18,10 @@ export async function POST(req, { params }) {
                 `select session_id from access_token where c_id=${c_id}`
             );
             if (session_token.length === 0) {
-                let session_token = v4();
+                session_token = v4();
                 await conn.query(
                     `insert into access_token values('${session_id}','${c_id}')`
                 );
-                // session_token = await conn.query(
-                //     "select session_id from access_token "
-                // );
             } else {
                 session_token = await conn.query(
                     `select session_id from access_token where c_id=${c_id}`
