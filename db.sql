@@ -43,10 +43,10 @@ show tables;
 
 insert into company values('1234','Apple','$2a$12$qW4ZpXWquqSHaOA8IgRYAu.yxiJ3KoYEK0GPPa9T9IIPdJaucP.aC');
 
-insert into products values('100','Apple iPhone 15 Pro Max (256 GB) - Blue Titanium','mobile',null,100,'1234');
-insert into products values('101','Apple iPhone 11 (128GB) - Black','mobile',null,50,'1234');
-insert into products values('102','Apple 2022 MacBook Air Laptop with M2 chip: 34.46 cm (13.6-inch) Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera. Works with iPhone/iPad; Midnight ','laptop',null,35,'1234');
-insert into products values('103','Apple 2022 Mac Studio M1 Ultra chip with 20‑core CPU and 48‑core GPU, 64GB RAM, 1TB SSD - Silver ','mac studio',null,40,'1234');
+-- insert into products values('100','Apple iPhone 15 Pro Max (256 GB) - Blue Titanium','mobile',null,100,'1234');
+-- insert into products values('101','Apple iPhone 11 (128GB) - Black','mobile',null,50,'1234');
+-- insert into products values('102','Apple 2022 MacBook Air Laptop with M2 chip: 34.46 cm (13.6-inch) Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera. Works with iPhone/iPad; Midnight ','laptop',null,35,'1234');
+-- insert into products values('103','Apple 2022 Mac Studio M1 Ultra chip with 20‑core CPU and 48‑core GPU, 64GB RAM, 1TB SSD - Silver ','mac studio',null,40,'1234');
 
 
 insert into seller values('5000','ecommerce','1234','100');
