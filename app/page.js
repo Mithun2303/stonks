@@ -22,6 +22,8 @@ export default function Home() {
     setPassword(event.target.value);
   };
 
+  const router = useRouter();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(companyId, password);
@@ -32,8 +34,6 @@ export default function Home() {
     } 
     // then send POST 
   };
-
-  const router = useRouter();
 
   return (
     <div className="outer-bg bg-[#d8dee9] h-[100vh] min-h-[100%] p-10 flex flex-row-reverse">
