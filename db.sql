@@ -27,7 +27,7 @@ create table IF NOT EXISTS company_seller(
     c_id varchar(255) references company(c_id),
     s_id varchar(255) references seller(s_id),
     primary key(s_id,c_id)
-
+    
 );
 create table IF NOT EXISTS seller_product(
     s_id varchar(255) references seller(c_id),
@@ -35,7 +35,7 @@ create table IF NOT EXISTS seller_product(
     sold_stocks int,
     constraint seller_stock_const check(sold_stocks>=0),
     primary key(s_id,p_id)
-)
+);
 create table  IF NOT EXISTS seller(
     s_id varchar(255) PRIMARY KEY,
     s_type varchar(255) not null,
