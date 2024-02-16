@@ -11,7 +11,7 @@ export async function POST(req, { params }) {
         db.release();
 
         console.log('Seller added:', result);
-        return new NextResponse("Product added successfully", { status: 200 });
+        return new NextResponse("seller added successfully", { status: 200 });
     } 
     catch (error) {
         console.error('Error adding seller:', error);
