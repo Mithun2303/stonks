@@ -29,10 +29,12 @@ export default function Home() {
     console.log(companyId, password);
     if (!companyId.match(/.{3,}/)) {
       setCompanyError("Enter a valid company ID.");
-    } else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
-      setPasswordError("Password must contain atleast one uppercase, lowercase and symbol.")
-    } 
-    // then send POST 
+    } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
+      setPasswordError(
+        "Password must contain atleast one uppercase, lowercase and symbol."
+      );
+    }
+    // then send POST
   };
 
   return (
@@ -72,6 +74,16 @@ export default function Home() {
                 } text-[#bf616a]`}
               >
                 {passwordError}
+              </label>
+            </div>
+            <div className="mt-3">
+              <label className="text-sm">
+                {" "}
+                Signing in as a seller?{" "}
+                <a href="./seller" className="text-blue-500 hover:underline transition-all">
+                  {" "}
+                  Click here.{" "}
+                </a>
               </label>
             </div>
             <div className="flex mt-10">
