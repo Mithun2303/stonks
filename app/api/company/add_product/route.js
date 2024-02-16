@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import pool from  "../../../../utils/db";
 const bcrypt = require("bcrypt");
 
-export async function POST(req, { params }) {
+export async function POST(req, { params}) {
     try {
         const { p_id, p_name, p_desc, p_image, avail_stock } = req.body;
 
