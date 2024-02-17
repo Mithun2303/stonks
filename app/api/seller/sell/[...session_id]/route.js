@@ -20,7 +20,7 @@ export async function POST(req, { params }) {
                     console.log(seller_product_details[0].provided_stock, count)
                     await conn.query(`update seller_product set sold_stocks = sold_stocks+${count} where  s_id='${seller_id[0].c_id}' and  p_id ='${product_id}'`);
                     await conn.query(`update products set avail_stock = avail_stock-${count} where p_id = '${product_id}'`);
-                    const socket = new io("http://192.168.60.226:3001/");
+                    const socket = new io("http://127.0.0.1:3001/");
                     socket.emit('check_product',product_id);
                     const result = await conn.query(`select * from products natural join seller_product where s_id=${seller_id[0].c_id}`);
                     console.log(result);

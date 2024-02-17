@@ -2,8 +2,7 @@
 const pool = require("./utils/db");
 const io = require("socket.io")(3001, {
   cors: {
-    origin: "*",
-    method: ["GET", "POST"],
+    origin: '*',
   },
 });
 try {
@@ -18,7 +17,14 @@ try {
         console.log(resp);
         io.emit("getproduct",resp);
     });
-
+    socket.on("prod",async (product_id)=>{
+      console.log(product_id);
+      const conn = await pool.getConnection();
+      const resp = await conn.query(
+        `select p_id,p_name,p_desc,avail_stock,total_stock,p_image from products where  p_id='${product_id}'`
+      );
+      io.emit("getproduct",resp);
+    })
     socket.on("hello",(msg)=>{
       console.log(msg);
     })
