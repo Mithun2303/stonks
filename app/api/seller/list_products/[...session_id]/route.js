@@ -10,7 +10,7 @@ export async function GET(req, { params }) {
             throw ("Invalid session ID")
         }
         else {
-            const result = await conn.query(`select * from products natural join seller_product where s_id=${seller_id[0].c_id}`);
+            const result = await conn.query(`select p_id,p_name,p_desc,p_image,sold_stocks,provided_stock from products natural join seller_product where s_id=${seller_id[0].c_id}`);
             console.log(result);
             return NextResponse.json(result, { status: 200 });
 
