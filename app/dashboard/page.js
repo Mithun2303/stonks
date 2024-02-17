@@ -1,6 +1,7 @@
 "use client";
 
 import { Noto_Sans } from "next/font/google";
+import Cookie from "universal-cookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Product from "./Product";
@@ -12,6 +13,13 @@ const notoSans = Noto_Sans({
 
 export default function Dashboard() {
   const router = useRouter();
+
+  const handleLogout = () => {
+    const cookies = new Cookie();
+    cookies.remove("session_id");
+    router.push("/");
+  };
+
   return (
     <div className="outer-card h-[100vh] min-h-[100%] p-5">
       <div className="inner-main bg-[#e5e9f0] h-full flex rounded-lg">
@@ -52,7 +60,7 @@ export default function Dashboard() {
               </li>
               <li
                 className="flex p-3 hover:bg-[#4c566a] rounded-xl text-md align-middle text-[#bf616a] cursor-pointer my-2"
-                onClick={() => router.push("/")} //make contact page
+                onClick={handleLogout} //make contact page
               >
                 <Image src="/log-out.svg" width={20} height={20}></Image>
                 <a className="ms-4"> Logout </a>

@@ -1,1 +1,1 @@
-sudo mariadb -u root -p stonks < db.sql
+sudo mariadb -u stonks -p stonks < db.sql
