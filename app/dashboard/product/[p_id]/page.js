@@ -20,5 +20,5 @@ export default function ProductPage({ params }) {
     }
 
   },[])
-  return <div>{params.p_id}</div>;
+  return <div className="bg-[#e5e9f0] h-[100%] min-h-[100vh]"></div>;
 }
