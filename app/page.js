@@ -33,7 +33,7 @@ export default function CompanyLogin() {
       setCompanyError("Enter a valid company ID.");
     } else {
       axios
-        .post(`http://192.168.60.226:3000/api/company/auth/${companyId}`, {
+        .post(`http://localhost:3000/api/company/auth/${companyId}`, {
           password: password,
         })
         .then((res) => {

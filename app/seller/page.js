@@ -27,12 +27,17 @@ export default function SellerLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(sellerId, password);
-    if (!sellerId.match(/.{3,}/)) {
-      setSellerError("Enter a valid seller ID.");
-    } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
-      setPasswordError(
-        "Password must contain atleast one uppercase, lowercase and symbol."
-      );
+    if (!companyId) {
+      setCompanyError("Enter a valid company ID.");
+    } else {
+      axios
+        .post(`http://localhost:3000/api/company/auth/${companyId}`, {
+          password: password,
+        })
+        .then((res) => {
+          cookies.set("session_id", res.data.message.session_id);
+          router.push("./seller/dashboard");
+        });
     }
     // then send POST
   };
@@ -80,7 +85,10 @@ export default function SellerLogin() {
               <label className="text-sm">
                 {" "}
                 Signing in as a company?{" "}
-                <a href="../" className="text-blue-500 hover:underline transition-all">
+                <a
+                  href="../"
+                  className="text-blue-500 hover:underline transition-all"
+                >
                   {" "}
                   Click here.{" "}
                 </a>
