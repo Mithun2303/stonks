@@ -10,10 +10,9 @@ export async function GET(req, { params }) {
     );
     if (c_id.length != 0) {
       const result = await db.query(
-        `select p_id,p_name,p_desc,avail_stock,p_image from products where c_id='${c_id[0].c_id}'`
+        `select p_id,p_name,p_desc,avail_stock,total_stock,p_image from products where c_id='${c_id[0].c_id}'`
       );
       db.end();
-      console.log("Product updated:", result);
       return NextResponse.json(result, { status: 200 });
     } else {
       throw "Invalid session ID";
