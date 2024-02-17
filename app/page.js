@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Noto_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
+import Cookie from "universal-cookie";
+import axios from "axios";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -23,18 +25,36 @@ export default function CompanyLogin() {
   };
 
   const router = useRouter();
-
+  const cookies = new Cookie();
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(companyId, password);
-    if (!companyId.match(/.{3,}/)) {
+    if (companyId.match(/./)) {
       setCompanyError("Enter a valid company ID.");
-    } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
-      setPasswordError(
-        "Password must contain atleast one uppercase, lowercase and symbol."
-      );
+      // } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
+      //   setPasswordError(
+      //     "Password must contain atleast one uppercase, lowercase and symbol."
+      //   );
+    } else {
+      axios
+        .post(
+          `http://192.168.60.226:3000/api/company/auth/${companyId}`,
+          {
+            password: password,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "User-Agent": "me",
+              Accept: "*/*",
+            },
+          }
+        )
+        .then((res) => {
+          cookies.set("session_id", res.data.message.session_id);
+          console.log(res.data.message.session_id);
+        });
     }
-    // then send POST
   };
 
   return (
@@ -80,7 +100,10 @@ export default function CompanyLogin() {
               <label className="text-sm">
                 {" "}
                 Signing in as a seller?{" "}
-                <a href="./seller" className="text-blue-500 hover:underline transition-all">
+                <a
+                  href="./seller"
+                  className="text-blue-500 hover:underline transition-all"
+                >
                   {" "}
                   Click here.{" "}
                 </a>

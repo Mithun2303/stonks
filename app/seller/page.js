@@ -79,8 +79,8 @@ export default function SellerLogin() {
             <div className="mt-3">
               <label className="text-sm">
                 {" "}
-                Signing in as a seller?{" "}
-                <a href="./seller" className="text-blue-500 hover:underline transition-all">
+                Signing in as a company?{" "}
+                <a href="../" className="text-blue-500 hover:underline transition-all">
                   {" "}
                   Click here.{" "}
                 </a>
