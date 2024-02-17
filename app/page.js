@@ -31,21 +31,14 @@ export default function CompanyLogin() {
     console.log(companyId, password);
     if (!companyId) {
       setCompanyError("Enter a valid company ID.");
-      // } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
-      //   setPasswordError(
-      //     "Password must contain atleast one uppercase, lowercase and symbol."
-      //   );
     } else {
       axios
-        .post(
-          `http://192.168.60.226:3000/api/company/auth/${companyId}`,
-          {
-            password: password,
-          }
-        )
+        .post(`http://192.168.60.226:3000/api/company/auth/${companyId}`, {
+          password: password,
+        })
         .then((res) => {
           cookies.set("session_id", res.data.message.session_id);
-          console.log(res.data.message.session_id);
+          router.push("./dashboard");
         });
     }
   };
