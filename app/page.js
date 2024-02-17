@@ -29,7 +29,7 @@ export default function CompanyLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(companyId, password);
-    if (companyId.match(/./)) {
+    if (!companyId) {
       setCompanyError("Enter a valid company ID.");
       // } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
       //   setPasswordError(
@@ -41,13 +41,6 @@ export default function CompanyLogin() {
           `http://192.168.60.226:3000/api/company/auth/${companyId}`,
           {
             password: password,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "User-Agent": "me",
-              Accept: "*/*",
-            },
           }
         )
         .then((res) => {

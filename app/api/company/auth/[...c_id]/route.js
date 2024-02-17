@@ -5,7 +5,7 @@ const { v4 } = require("uuid");
 export async function POST(req, { params }) {
   const body = await req.json();
 
-  const c_id = params.c_id;
+  const c_id = await params.c_id;
   const conn = await pool.getConnection();
   const password = await conn.query(
     `select password from company where c_id=${c_id}`
