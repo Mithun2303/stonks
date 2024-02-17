@@ -27,7 +27,7 @@ create table IF NOT EXISTS company_seller(
     c_id varchar(255) references company(c_id),
     s_id varchar(255) references seller(s_id),
     primary key(s_id,c_id)
-    
+
 );
 create table IF NOT EXISTS seller_product(
     s_id varchar(255) references seller(c_id),
@@ -54,7 +54,7 @@ create table IF NOT EXISTS access_token(
 
 show tables;
 
-insert into company values('1234','Apple','$2a$12$qW4ZpXWquqSHaOA8IgRYAu.yxiJ3KoYEK0GPPa9T9IIPdJaucP.aC',"inventory@apple.com");
+insert into company values('1234','Apple','$2a$12$.wEHsgsz/2hkeCwuNhmzduzusgoyDD3UPT8VrxMMyB4DbBUlNrl2C',"inventory@apple.com");
 
 -- insert into products values('100','Apple iPhone 15 Pro Max (256 GB) - Blue Titanium','mobile',null,100,'1234');
 -- insert into products values('101','Apple iPhone 11 (128GB) - Black','mobile',null,50,'1234');

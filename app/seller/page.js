@@ -8,14 +8,14 @@ const notoSans = Noto_Sans({
   subsets: ["latin"],
   weight: "400",
 });
-export default function CompanyLogin() {
-  const [companyId, setCompanyId] = useState("");
-  const [companyError, setCompanyError] = useState("");
+export default function SellerLogin() {
+  const [sellerId, setSellerId] = useState("");
+  const [sellerError, setSellerError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleCompanyInputChange = (event) => {
-    setCompanyId(event.target.value);
+  const handleSellerInputChange = (event) => {
+    setSellerId(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -26,9 +26,9 @@ export default function CompanyLogin() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(companyId, password);
-    if (!companyId.match(/.{3,}/)) {
-      setCompanyError("Enter a valid company ID.");
+    console.log(sellerId, password);
+    if (!sellerId.match(/.{3,}/)) {
+      setSellerError("Enter a valid seller ID.");
     } else if (!password.match(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
       setPasswordError(
         "Password must contain atleast one uppercase, lowercase and symbol."
@@ -45,20 +45,20 @@ export default function CompanyLogin() {
             <div className="flex justify-center font-semibold text-2xl">
               stonks.
             </div>
-            <div className="company-id flex-col mt-10 text-md">
-              <label className="flex"> Company ID </label>
+            <div className="seller-id flex-col mt-10 text-md">
+              <label className="flex"> Seller ID </label>
               <input
                 className="bg-transparent block h-10 w-3/4 mt-3 text-sm border border-b-[#5e81ac] outline-none hover:border-2 hover:w-full focus:w-full focus:border-2 transition-all"
                 type="text"
                 autoFocus={true}
-                onChange={handleCompanyInputChange}
+                onChange={handleSellerInputChange}
               ></input>
               <label
                 className={`text-xs ${
-                  companyError ? "mt-4" : "mt-0"
+                  sellerError ? "mt-4" : "mt-0"
                 } text-[#bf616a]`}
               >
-                {companyError}
+                {sellerError}
               </label>
             </div>
             <div className="password flex-col mt-10 text-md">
